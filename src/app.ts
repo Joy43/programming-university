@@ -1,6 +1,7 @@
 import cors from 'cors';
-import express, { Application, Request, Response } from 'express';
+import express, { Application, request, Request, response, Response } from 'express';
 import { StudentRoutes } from './app/modules/student/student.route';
+import { NextFunction } from 'express';
 
 const app: Application = express();
 
@@ -20,6 +21,17 @@ app.get('/', (req: Request, res: Response) => {
   res.send({
     status: true,
     message: 'ph university is running successfully 🏃🏽‍♂️➡️',
+  });
+});
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  let statusCode = err.statusCode || 500; // Default to 500 if no statusCode is provided
+  let message = err.message || 'Something went wrong!';
+  
+  return res.status(statusCode).json({
+    success: false,
+    message,
+    error: err.stack, // Optional: Include the stack trace for debugging purposes
   });
 });
 
