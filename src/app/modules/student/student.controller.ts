@@ -2,13 +2,14 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import httpStatus from 'http-status';
 import sendResponse from '../../utils/sendResponse';
 import { StudentServices } from './student.service';
-// -------------- try catch use code repid resume------------
-const catchAsync=(fn:RequestHandler)=>{
+import catchAsync from '../../utils/catchAsync';
+// -------------- try catch use code repid resume try & catch working resolve & catch work easy way------------
+/* const catchAsync=(fn:RequestHandler)=>{
 return(req:Request,res:Response,next:NextFunction)=>{
   Promise.resolve (fn (req,res,next)).catch((err)=>next(err));
 }
 
-};
+}; */
 
 //------------ single getSingleStudent----------------
 const getSingleStudent=catchAsync(async (
@@ -28,12 +29,13 @@ const getSingleStudent=catchAsync(async (
     });
   })
 
-const getAllStudents = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+  // -----get all student----------
+const getAllStudents =catchAsync(async (
+  req,
+  res,
+  next,
 ) => {
-  try {
+ 
     const result = await StudentServices.getAllStudentsFromDB();
 
     sendResponse(res, {
@@ -42,17 +44,16 @@ const getAllStudents = async (
       message: 'Student are retrieved succesfully',
       data: result,
     });
-  } catch (err) {
-    next(err);
-  }
-};
+ 
+}) 
 
-const deleteStudent = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+// ------- Delete student---------
+const deleteStudent =catchAsync (async (
+  req,
+  res,
+  next,
 ) => {
-  try {
+
     const { studentId } = req.params;
     const result = await StudentServices.deleteStudentFromDB(studentId);
 
@@ -62,10 +63,8 @@ const deleteStudent = async (
       message: 'Student is deleted succesfully',
       data: result,
     });
-  } catch (err) {
-    next(err);
-  }
-};
+  
+})
 
 export const StudentControllers = {
   getAllStudents,
