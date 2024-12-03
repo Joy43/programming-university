@@ -6,7 +6,7 @@ import sendResponse from '../../utils/sendResponse';
 import catchAsync from '../../utils/catchAsync';
 import { AcademicSemesterServices } from './academicSemester.service';
 
-const  createAcademicsSemesterControllers= catchAsync(
+const  createAcademicsSemester= catchAsync(
   async (
     req,
     res,
@@ -35,6 +35,11 @@ const  createAcademicsSemesterControllers= catchAsync(
   }
 )
 
+const SingleAcademicSemester=catchAsync(
+  async(req,res,next)=>{
+    
+  }
+)
 export const  AcademicsSemesterControllers = {
-    createAcademicsSemesterControllers,
+    createAcademicsSemester,
 };

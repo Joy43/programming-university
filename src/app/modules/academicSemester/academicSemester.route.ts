@@ -9,7 +9,7 @@ router.post(
     validateRequest(
       AcademicSemestervalidations.createAcdemicSemesterValidationSchema,
     ),
-    AcademicsSemesterControllers.createAcademicsSemesterControllers,
+    AcademicsSemesterControllers.createAcademicsSemester,
   );
 
 export const AcademicSemesterRouters=router;
