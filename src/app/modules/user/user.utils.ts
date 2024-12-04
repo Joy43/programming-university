@@ -13,7 +13,7 @@ const findLastStudentId=async()=>{
         },
     ).lean()
     // 203001 0001
-    return lastStudent?.id? lastStudent.id:substring(6);
+    return lastStudent?.id? lastStudent.id:undefined;
 }
 //  year semesterCode 4 digit number
 export const generateStudentId=(payload:TAcademicSemseter)=>{
