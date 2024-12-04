@@ -3,25 +3,25 @@
     "password": "JoY@215748",
     "student": {
       "name": {
-        "firstName": "John",
+        "firstName": "Joy",
         "middleName": "A.",
         "lastName": "Doe"
       },
       "gender": "male",
       "dateOfBirth": "2000-05-15",
-      "email": "john.doe@example.com",
+      "email": "john@example.com",
       "contactNo": "1234567890",
       "emergencyContactNo": "0987654321",
       "bloogGroup": "O+",
       "presentAddress": "123 Present Street, Cityville",
       "permanentAddress": "456 Permanent Avenue, Townsville",
       "guardian": {
-        "fatherName": "Robert Doe",
+        "fatherName": " Doe",
         "fatherOccupation": "Engineer",
         "fatherContactNo": "1122334455",
         "motherName": "Jane Doe",
         "motherOccupation": "Teacher",
-        "motherContactNo": "2233445566"
+        "motherContactNo": "2233445560"
       },
       "localGuardian": {
         "name": "Mike Smith",
@@ -29,7 +29,7 @@
         "contactNo": "3344556677",
         "address": "789 Local Guardian Blvd, Village City"
       },
-      "admissionSemester": "Fall 2024",
+      "admissionSemester": "674dfa0771d727674902f631",
       "profileImg": "https://example.com/profiles/john-doe.jpg"
     }
  
