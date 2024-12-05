@@ -1,5 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-import httpStatus from 'http-status';
+import httpStatus from 'http-status-codes';
 import sendResponse from '../../utils/sendResponse';
 import { StudentServices } from './student.service';
 import catchAsync from '../../utils/catchAsync';
