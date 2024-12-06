@@ -27,7 +27,7 @@ AcademicFaculty:z.string({
 }).optional(),
     })
 })
-export const DepartmentValidation=({
+export const AcademicDepartmentValidation=({
     updateAcademicDepartmentValidationSchema,
     crateAcademicDepartmentValidationSchema  
 })
