@@ -53,7 +53,7 @@ const getAllacademicSemester=catchAsync(
   async(req,res)=>{
     const result=await AcademicSemesterServices.getAllAcademicSemestersFromDB();
     sendResponse(res,{
-      statusCode:httpStatus.ok,
+      statusCode:httpStatus.OK,
       success:true,
       message:'getallacademicsemester sucessful',
       data:true,

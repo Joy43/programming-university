@@ -5,15 +5,11 @@ import { TAcademicSemseter } from "./academicSemester.interface";
 
 const academicSemesterSchema=new Schema<TAcademicSemseter>(
     {
-        name:{
-            type:String,
-            required:true,
-            enum:AcademicSemesterName
-        },
-        year:{
-            type:String,
-            required:true
-        },
+      year: {
+        type: String,
+        required: [true, 'Year is required'],
+      },
+       
         code: {
             type: String,
             required: true,

@@ -4,8 +4,23 @@ import AppError from '../../errors/AppError';
 import { User } from '../user/user.model';
 import httpStatus from 'http-status-codes';
 import { TStudent } from './student.interface';
+import { query } from 'express';
 // --get all student services----------
 const getAllStudentsFromDB = async () => {
+
+  const searchQuery=Student.find({
+    $or:studentSeachableFields.map((field)=>({
+      [field]:{$regex:seachTerm,$options:'i'},
+    }))
+  })
+  // 
+  const studentSearchableFieds=['email','name.firstName','presentAddress'];
+  let searchTerm='';
+  if(query?.searchTerm){
+    searchTerm=query?.searchTerm as string;
+  }
+
+  // 
   const result = await Student.find()
   .populate('admissionSemester')
   .populate({
