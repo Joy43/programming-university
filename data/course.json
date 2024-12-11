@@ -1,0 +1,18 @@
+[
+    {
+        "title":"Basic computer skill",
+        "prefix":"BASIC",
+        "code":100,
+        "credits":3
+    },
+    {
+        "title":"Basic computer skill",
+        "prefix":"HTML",
+        "code":101,
+        "credits":3,
+        "preRequisteCourses":[{
+            "course":"67591ad5ac711931743a1d03"
+        }]
+        
+    }
+]
