@@ -20,4 +20,14 @@ router.get('/',CourseControllers.getAllCoure)
 // ---------delete-----
 router.delete('/:id',CourseControllers.deleteCourse)
 
+// course update
+router.patch(
+  '/:id',
+  validateRequest(
+    CourseValidations.updateStudentValidationSchema,
+
+  ),
+  CourseControllers.updateCourse
+)
+
 export const CourseRouter=router;
