@@ -1,14 +1,16 @@
 import httpStatus from 'http-status-codes';
-import QueryBuilder from '../../builder/QueryBuilder';
+
 import AppError from '../../errors/AppError';
 import { Course } from '../Course/course.model';
-import { Faculty } from '../Faculty/faculty.model';
+
 import { AcademicDepartment } from '../academicDepartment/academicDepartment.model';
 import { AcademicFaculty } from '../academicFaculty/academicFaculty.model';
 import { SemesterRegistration } from '../semesterRegistration/semesterRegistration.model';
-import { TOfferedCourse } from './OfferedCourse.interface';
-import { OfferedCourse } from './OfferedCourse.model';
-import { hasTimeConflict } from './OfferedCourse.utils';
+import { TOfferedCourse } from './offredCourse.interface';
+import { OfferedCourse } from './offredCourse.model';
+import { hasTimeConflict } from './offeredCourse.utils';
+import QueryBuilder from '../../../builder/QueryBuilder';
+
 
 const createOfferedCourseIntoDB = async (payload: TOfferedCourse) => {
   const {

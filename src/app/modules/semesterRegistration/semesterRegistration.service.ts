@@ -3,7 +3,7 @@ import httpStatus from 'http-status-codes';
 import mongoose from 'mongoose';
 
 import AppError from '../../errors/AppError';
-
+import { OfferedCourse } from '../OfferedCourse/OfferedCourse.model';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { RegistrationStatus } from './semesterRegistration.constant';
 import { TSemesterRegistration } from './semesterRegistration.interface';
@@ -63,8 +63,6 @@ const createSemesterRegistrationIntoDB = async (
   const result = await SemesterRegistration.create(payload);
   return result;
 };
-// -------------get all semester reagister-----------
-
 
 const getAllSemesterRegistrationsFromDB = async (
   query: Record<string, unknown>,
@@ -87,7 +85,7 @@ const getSingleSemesterRegistrationsFromDB = async (id: string) => {
 
   return result;
 };
-// --------------update semester register --------------
+
 const updateSemesterRegistrationIntoDB = async (
   id: string,
   payload: Partial<TSemesterRegistration>,
@@ -151,8 +149,6 @@ const updateSemesterRegistrationIntoDB = async (
 
   return result;
 };
-
-// --------- delete semester-------------
 
 const deleteSemesterRegistrationFromDB = async (id: string) => {
   /** 
