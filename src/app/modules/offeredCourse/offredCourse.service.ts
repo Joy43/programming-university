@@ -10,6 +10,7 @@ import { TOfferedCourse } from './offredCourse.interface';
 import { OfferedCourse } from './offredCourse.model';
 import { hasTimeConflict } from './offeredCourse.utils';
 import QueryBuilder from '../../../builder/QueryBuilder';
+import { Faculty } from '../faculty/faculty.model';
 
 
 const createOfferedCourseIntoDB = async (payload: TOfferedCourse) => {
