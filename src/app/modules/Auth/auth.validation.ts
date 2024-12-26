@@ -1,37 +1,52 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-const loginValidationSchema=z.object({
-    body:z.object({
-        id:z.string({required_error:'id is required'}),
-        password:z.string({required_error:'password is required'})
-    })
+const loginValidationSchema = z.object({
+  body: z.object({
+    id: z.string({ required_error: 'Id is required.' }),
+    password: z.string({ required_error: 'Password is required' }),
+  }),
 });
+
 const changePasswordValidationSchema = z.object({
-    body: z.object({
-      oldPassword: z.string({
-        required_error: 'Old password is required',
-      }),
-      newPassword: z.string({ required_error: 'Password is required' }),
+  body: z.object({
+    oldPassword: z.string({
+      required_error: 'Old password is required',
     }),
-  });
-  const refreshTokenValidationSchema = z.object({
-    cookies: z.object({
-      refreshToken: z.string({
-        required_error: 'Refresh token is required!',
-      }),
+    newPassword: z.string({ required_error: 'Password is required' }),
+  }),
+});
+
+const refreshTokenValidationSchema = z.object({
+  cookies: z.object({
+    refreshToken: z.string({
+      required_error: 'Refresh token is required!',
     }),
-  });
-// -----------forgetpasswordvalidationSchema
-const forgetPasswordValidationSchema=z.object({
-    body:z.object({
-        id:z.string({
-            required_error:'user id is required',
-        })
-    })
-})
-export const AuthVaidation={
-    loginValidationSchema,
-    forgetPasswordValidationSchema,
-    refreshTokenValidationSchema,
-    changePasswordValidationSchema
-}
+  }),
+});
+
+const forgetPasswordValidationSchema = z.object({
+  body: z.object({
+    id: z.string({
+      required_error: 'User id is required!',
+    }),
+  }),
+});
+
+const resetPasswordValidationSchema = z.object({
+  body: z.object({
+    id: z.string({
+      required_error: 'User id is required!',
+    }),
+    newPassword: z.string({
+      required_error: 'User password is required!',
+    }),
+  }),
+});
+
+export const AuthValidation = {
+  loginValidationSchema,
+  changePasswordValidationSchema,
+  refreshTokenValidationSchema,
+  forgetPasswordValidationSchema,
+  resetPasswordValidationSchema,
+};

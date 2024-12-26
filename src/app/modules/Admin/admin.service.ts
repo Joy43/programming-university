@@ -3,19 +3,12 @@
 import mongoose from 'mongoose';
 
 import AppError from '../../errors/AppError';
-
+import { User } from '../user/user.model';
 import { AdminSearchableFields } from './admin.constant';
+import { TAdmin } from './admin.interface';
+import { Admin } from './admin.model';
 import QueryBuilder from '../../../builder/QueryBuilder';
-import { TAdmin } from './auth.interface';
-import { Admin } from './auth.model';
-import { createToken } from './auth.utils';
-
-import { httpStatus } from 'http-status-codes';
-import config from '../../config';
-import { User } from './../user/user.model';
-import { sendEmail } from '../../utils/sendEmail';
-
-
+import httpStatus from 'http-status-codes';
 
 const getAllAdminsFromDB = async (query: Record<string, unknown>) => {
   const adminQuery = new QueryBuilder(Admin.find(), query)
@@ -92,61 +85,11 @@ const deleteAdminFromDB = async (id: string) => {
     await session.endSession();
     throw new Error(err);
   }
-  // ------reset token-----------
-
 };
 
-const forgetPassword = async (userId: string, token: string | undefined) => {
-  // checking if the user is exist
-  const user = await User.isUserExistsByCustomId(userId);
-
-  if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
-  }
-  // checking if the user is already deleted
-  const isDeleted = user?.isDeleted;
-
-  if (isDeleted) {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted !');
-  }
-
-  // checking if the user is blocked
-  const userStatus = user?.status;
-
-  if (userStatus === 'blocked') {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked ! !');
-  }
-
-  const jwtPayload = {
-    userId: user.id,
-    role: user.role,
-  };
-
-  const resetToken = createToken(
-    jwtPayload,
-    config.jwt_access_secret as string,
-    '10m',
-  );
-
-  const resetUILink = `${config.reset_pass_ui_link}?id=${user.id}&token=${resetToken} `;
-
-  sendEmail(user.email, resetUILink);
-
-  console.log(resetUILink);
-};
-
-const resetPassword=(paylod:{id:string,newPassword:string},
-  token,
-
-)=>{
-
-}
-
-export const AuthServices = {
+export const AdminServices = {
   getAllAdminsFromDB,
   getSingleAdminFromDB,
   updateAdminIntoDB,
   deleteAdminFromDB,
-  forgetPassword,
-  resetPassword
 };
