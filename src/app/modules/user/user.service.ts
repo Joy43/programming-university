@@ -4,7 +4,13 @@ import httpStatus from 'http-status';
 import mongoose from 'mongoose';
 import config from '../../config';
 import AppError from '../../errors/AppError';
+import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary';
+import { TAdmin } from '../Admin/admin.interface';
+import { Admin } from '../Admin/admin.model';
 
+import { AcademicDepartment } from '../academicDepartment/academicDepartment.model';
+import { TStudent } from '../student/student.interface';
+import { Student } from '../student/student.model';
 import { AcademicSemester } from './../academicSemester/academicSemester.model';
 import { TUser } from './user.interface';
 import { User } from './user.model';
@@ -13,13 +19,8 @@ import {
   generateFacultyId,
   generateStudentId,
 } from './user.utils';
-import { TStudent } from '../student/student.interface';
-import { Student } from '../student/student.model';
 import { TFaculty } from '../faculty/faculty.interface';
-import { AcademicDepartment } from '../academicDepartment/academicDepartment.model';
 import { Faculty } from '../faculty/faculty.model';
-import { Admin } from '../Auth/auth.model';
-import { TAdmin } from '../Auth/auth.interface';
 
 const createStudentIntoDB = async (
   file: any,
@@ -56,7 +57,7 @@ const createStudentIntoDB = async (
     const imageName = `${userData.id}${payload?.name?.firstName}`;
     const path = file?.path;
     //send image to cloudinary
-    const { secure_url } = await sendImageToCloudinary(imageName, path);
+    const { secure_url} = await sendImageToCloudinary(imageName, path);
 
     // create a user (transaction-1)
     const newUser = await User.create([userData], { session }); // array
@@ -246,7 +247,3 @@ export const UserServices = {
   getMe,
   changeStatus,
 };
-
-function sendImageToCloudinary(imageName: string, path: any): { secure_url: any; } | PromiseLike<{ secure_url: any; }> {
-  throw new Error('Function not implemented.');
-}
